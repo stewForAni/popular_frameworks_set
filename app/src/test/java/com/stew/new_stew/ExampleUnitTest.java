@@ -1,4 +1,4 @@
-package com.stew.newstew;
+package com.stew.new_stew;
 
 import org.junit.Test;
 

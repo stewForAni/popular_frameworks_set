@@ -1,4 +1,4 @@
-package com.stew.newstew;
+package com.stew.new_stew;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
