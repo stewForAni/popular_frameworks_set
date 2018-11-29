@@ -1,7 +1,7 @@
 package com.stew.new_stew.base.view;
 
 /**
- * describe: view base class
+ * describe: view(activity) base class
  * date： 2018/11/28 on 13:24
  * author: stew (https://github.com/stewForAni)
  */

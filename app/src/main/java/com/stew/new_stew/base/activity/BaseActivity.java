@@ -2,6 +2,7 @@ package com.stew.new_stew.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.stew.new_stew.base.presenter.AbstractPresenter;
 import com.stew.new_stew.base.view.BaseView;
@@ -14,14 +15,34 @@ import com.stew.new_stew.base.view.BaseView;
 
 public abstract class BaseActivity<T extends AbstractPresenter> extends RootActivity implements BaseView {
 
+    private static final String TAG = BaseActivity.class.getName();
+
+    protected T presenter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, TAG + "onCreate");
+    }
+
+    @Override
+    protected void initPresenter() {
+        Log.d(TAG, "initPresenter");
+        if (presenter != null) {
+            presenter.attachView(this);
+        }
     }
 
     @Override
     protected void onDestroy() {
+
+        if(presenter!=null){
+            presenter.detachView();
+            presenter = null;
+        }
+
         super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 
     @Override
