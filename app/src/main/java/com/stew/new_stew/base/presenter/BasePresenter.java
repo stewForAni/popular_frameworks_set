@@ -9,6 +9,7 @@ import com.stew.new_stew.base.view.BaseView;
  * author: stew (https://github.com/stewForAni)
  */
 public abstract class BasePresenter<V extends BaseView> implements AbstractPresenter<V> {
+
     protected V view;
     private Datamanager datamanager;
 
@@ -25,4 +26,5 @@ public abstract class BasePresenter<V extends BaseView> implements AbstractPrese
     public void detachView() {
         this.view = null;
     }
+
 }

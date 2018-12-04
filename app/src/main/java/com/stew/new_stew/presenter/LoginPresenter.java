@@ -14,8 +14,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
 
     public LoginPresenter(Datamanager datamanager) {
         super(datamanager);
-        this.datamanager = datamanager;
     }
+
 
     @Override
     public void login(String userName, String userPassword) {

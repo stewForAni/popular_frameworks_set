@@ -30,6 +30,7 @@ public abstract class BaseActivity<T extends AbstractPresenter> extends RootActi
         Log.d(TAG, "initPresenter");
         if (presenter != null) {
             presenter.attachView(this);
+            Log.d(TAG,this.toString());
         }
     }
 
