@@ -20,4 +20,9 @@ public class MainActivity extends BaseActivity {
     protected void initMain() {
 
     }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_login;
+    }
 }

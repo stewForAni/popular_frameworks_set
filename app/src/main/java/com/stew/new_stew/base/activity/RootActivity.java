@@ -22,7 +22,7 @@ public abstract class RootActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
-
+        setContentView(getLayoutID());
         /*
          * bind butterKnife at RootActivity onCreate()
          * and unbind at onDestroy()
@@ -45,4 +45,6 @@ public abstract class RootActivity extends AppCompatActivity {
     protected abstract void initPresenter();
 
     protected abstract void initMain();
+
+    protected abstract int getLayoutID();
 }

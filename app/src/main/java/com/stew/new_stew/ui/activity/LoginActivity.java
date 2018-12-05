@@ -1,5 +1,6 @@
 package com.stew.new_stew.ui.activity;
 
+import com.stew.new_stew.R;
 import com.stew.new_stew.base.activity.BaseActivity;
 import com.stew.new_stew.contract.LoginContract;
 import com.stew.new_stew.presenter.LoginPresenter;
@@ -10,6 +11,12 @@ import com.stew.new_stew.presenter.LoginPresenter;
  * author: stew (https://github.com/stewForAni)
  */
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_login;
+    }
+
     @Override
     protected void initMain() {
 
