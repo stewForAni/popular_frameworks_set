@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.stew.new_stew.R;
+import com.stew.new_stew.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -49,10 +50,8 @@ public abstract class RootActivity extends AppCompatActivity {
     }
 
     private void setStatusBar() {
-        getWindow().setStatusBarColor(getResources().getColor(R.color.status_color_def));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
+        StatusBarUtil.transparencyStatusBar(this);
+        StatusBarUtil.StatusBarLightMode(this);
     }
 
     protected abstract void initPresenter();
