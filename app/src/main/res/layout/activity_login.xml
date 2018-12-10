@@ -1,21 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_layout_def">
 
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/login_head_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/app_logo_round_small"
+        android:src="@drawable/app_logo_round_100x"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:textColor="@color/dark_level_1"
+        android:textStyle="bold"
+        android:id="@+id/login_head_text1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/login_text1"
+        android:textSize="@dimen/login_text1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_head_icon" />
+
+    <TextView
+        android:textColor="@color/dark_level_1"
+        android:textStyle="bold"
+        android:id="@+id/login_head_text2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/login_text2"
+        android:textSize="@dimen/login_text2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_head_text1" />
+
+    <TextView
+        android:textColor="@color/dark_level_2"
+        android:id="@+id/login_head_text3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/login_text3"
+        android:textSize="@dimen/login_text3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_head_text2" />
 
 </android.support.constraint.ConstraintLayout>

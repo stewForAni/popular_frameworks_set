@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_text1">25sp</dimen>
+    <dimen name="login_text2">25sp</dimen>
+    <dimen name="login_text3">18sp</dimen>
+</resources>

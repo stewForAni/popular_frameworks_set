@@ -1,3 +1,9 @@
 <resources>
+    <!--app-->
     <string name="app_name">Stew</string>
+
+    <!--login-->
+    <string name="login_text1">Design anything.</string>
+    <string name="login_text2">Publish anywhere.</string>
+    <string name="login_text3">Work or play,Stew is loved by beginners and experts,teams and individuals.</string>
 </resources>

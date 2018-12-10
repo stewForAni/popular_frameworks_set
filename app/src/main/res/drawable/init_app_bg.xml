@@ -16,7 +16,7 @@
         >
 
         <bitmap
-            android:src="@drawable/app_logo_round_small"
+            android:src="@drawable/init_icon_round_100x"
             />
     </item>
 </layer-list>

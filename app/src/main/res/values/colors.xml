@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    //system
+    <!--system-->
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#FFFFFF</color>
 
-    //app
+    <!--app-->
     <color name="status_color_def">#FFFFFF</color>
     <color name="activity_layout_def">#FFFFFF</color>
 
-    //init_app
+    <!--dark-->
+    <color name="dark_level_0">#000000</color>
+    <color name="dark_level_1">#333333</color>
+    <color name="dark_level_2">#666666</color>
+    <color name="dark_level_3">#999999</color>
+    <color name="dark_level_4">#CCCCCC</color>
+
+    <!--init_app-->
     <color name="init_app_bg_startColor">#22C5E6</color>
     <color name="init_app_bg_endColor">#7F67E3</color>
     <color name="init_app_bg_transparent">#00000000</color>
