@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>　　　
+        <shape>
+            <gradient
+                android:angle="45"
+                android:startColor="@color/init_app_bg_startColor"
+                android:endColor="@color/init_app_bg_endColor"
+                android:type="linear" />
+        </shape>
+
+    </item>
+
+    <item
+        android:gravity="center"
+        >
+
+        <bitmap
+            android:src="@drawable/app_logo_round_small"
+            />
+    </item>
+</layer-list>

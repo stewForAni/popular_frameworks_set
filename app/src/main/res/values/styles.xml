@@ -10,4 +10,9 @@
         <item name="android:fitsSystemWindows">true</item>
     </style>
 
+
+    <style name="myAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/init_app_bg</item>
+    </style>
+
 </resources>

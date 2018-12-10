@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="myAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/init_app_bg</item>
+        <item name="android:statusBarColor">@color/init_app_bg_transparent</item>
+        <!-- [android:statusBarColor] this attr is the key to show status bar when app init with white or dark window background-->
+    </style>
+</resources>

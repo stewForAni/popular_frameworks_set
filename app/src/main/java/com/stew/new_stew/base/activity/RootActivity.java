@@ -25,6 +25,7 @@ public abstract class RootActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
         setStatusBar();

@@ -10,4 +10,8 @@
     <color name="status_color_def">#FFFFFF</color>
     <color name="activity_layout_def">#FFFFFF</color>
 
+    //init_app
+    <color name="init_app_bg_startColor">#22C5E6</color>
+    <color name="init_app_bg_endColor">#7F67E3</color>
+    <color name="init_app_bg_transparent">#00000000</color>
 </resources>
