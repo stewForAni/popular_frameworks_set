@@ -12,13 +12,12 @@
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/app_logo_round_100x"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textColor="@color/dark_level_1"
-        android:textStyle="bold"
         android:id="@+id/login_head_text1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -26,15 +25,15 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
         android:text="@string/login_text1"
+        android:textColor="@color/dark_level_1"
         android:textSize="@dimen/login_text1"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_head_icon" />
 
     <TextView
-        android:textColor="@color/dark_level_1"
-        android:textStyle="bold"
         android:id="@+id/login_head_text2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,14 +41,15 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="30dp"
         android:text="@string/login_text2"
+        android:textColor="@color/dark_level_1"
         android:textSize="@dimen/login_text2"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_head_text1" />
 
     <TextView
-        android:textColor="@color/dark_level_2"
         android:id="@+id/login_head_text3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -57,10 +57,95 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:text="@string/login_text3"
+        android:textColor="@color/dark_level_2"
         android:textSize="@dimen/login_text3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_head_text2" />
+
+    <LinearLayout
+        android:id="@+id/login_ll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_head_text3"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <RelativeLayout
+            android:id="@+id/login_btn_with_wx"
+            style="@style/login_btn"
+            android:background="@drawable/login_btn_bg_white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/login_with_wx"
+                android:textColor="@color/dark_level_1"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_wx" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/login_btn_with_qq"
+            style="@style/login_btn"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_btn_bg_white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/login_with_qq"
+                android:textColor="@color/dark_level_1"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_qq" />
+        </RelativeLayout>
+
+        <TextView
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:text="@string/login_with_email"
+            android:id="@+id/login_btn_with_email"
+            style="@style/login_btn"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/login_btn_bg_green" />
+
+        <TextView
+            android:id="@+id/login_bottom_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:text="@string/login_warning"
+            android:textColor="@color/dark_level_2"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

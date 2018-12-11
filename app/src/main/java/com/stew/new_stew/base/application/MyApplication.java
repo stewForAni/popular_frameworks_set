@@ -23,11 +23,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate: ");
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         instance = this;
     }
 

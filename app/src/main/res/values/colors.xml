@@ -17,8 +17,15 @@
     <color name="dark_level_3">#999999</color>
     <color name="dark_level_4">#CCCCCC</color>
 
+    <!--white-->
+    <color name="color_white">#FFFFFF</color>
+
     <!--init_app-->
     <color name="init_app_bg_startColor">#22C5E6</color>
     <color name="init_app_bg_endColor">#7F67E3</color>
     <color name="init_app_bg_transparent">#00000000</color>
+
+
+    <!--login-->
+    <color name="light_green">#00C5CB</color>
 </resources>

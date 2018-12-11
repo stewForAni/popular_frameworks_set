@@ -6,4 +6,8 @@
     <string name="login_text1">Design anything.</string>
     <string name="login_text2">Publish anywhere.</string>
     <string name="login_text3">Work or play,Stew is loved by beginners and experts,teams and individuals.</string>
+    <string name="login_warning">By continuing,you agree to Stew\'s Terms of Use and Privacy Policy</string>
+    <string name="login_with_qq">Continue with QQ</string>
+    <string name="login_with_wx">Continue with WeiXin</string>
+    <string name="login_with_email">Continue with email</string>
 </resources>

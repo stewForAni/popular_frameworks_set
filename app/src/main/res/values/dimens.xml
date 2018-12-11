@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--base radius-->
+    <dimen name="radius_level_1">5dp</dimen>
+    <dimen name="radius_level_2">10dp</dimen>
+    <dimen name="radius_level_3">15dp</dimen>
+    <dimen name="radius_level_4">25dp</dimen>
+
+    <!--login-->
     <dimen name="login_text1">25sp</dimen>
     <dimen name="login_text2">25sp</dimen>
     <dimen name="login_text3">18sp</dimen>
+
+
 </resources>
