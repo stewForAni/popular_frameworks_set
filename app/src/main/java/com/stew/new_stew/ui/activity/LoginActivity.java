@@ -1,7 +1,6 @@
 package com.stew.new_stew.ui.activity;
 
 import android.content.Intent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;

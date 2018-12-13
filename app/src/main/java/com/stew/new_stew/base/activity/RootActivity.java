@@ -22,6 +22,10 @@ public abstract class RootActivity extends AppCompatActivity {
 
     private static final String TAG = RootActivity.class.getName();
     private Unbinder unbinder;
+
+
+    //slide in or out variable
+    private boolean shouldIntercept = false;
     private float downX = 0f;
     private float downY = 0f;
 
@@ -89,9 +93,15 @@ public abstract class RootActivity extends AppCompatActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+
+        if (shouldIntercept) {
+            return onTouchEvent(ev);
+        }
+
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN: {
 
+                Log.d(TAG, "dispatchTouchEvent---ACTION_DOWN");
                 //get X position to screen {getX(), get X to ti's view}
                 downX = ev.getRawX();
                 downY = ev.getRawY();
@@ -99,7 +109,7 @@ public abstract class RootActivity extends AppCompatActivity {
             }
 
             case MotionEvent.ACTION_MOVE: {
-
+                Log.d(TAG, "dispatchTouchEvent---ACTION_MOVE");
                 //x轴方向没有滑动
                 if (ev.getRawX() == downX) {
                     break;
@@ -110,14 +120,66 @@ public abstract class RootActivity extends AppCompatActivity {
                     break;
                 }
 
+                //超过范围
+                if (ev.getRawX() - downX >= 100) {
+                    break;
+                }
+
+                //X轴方向 右滑 50~100px
+                if (ev.getRawX() - downX > 50) {
+                    float rate = (ev.getRawX() - downX) / (Math.abs(ev.getRawY() - downY));
+                    if ((downX < 50 && rate > 0.5f) || rate > 2) {
+                        shouldIntercept = true;
+                    }
+                }
+
                 break;
             }
 
 
             case MotionEvent.ACTION_UP: {
+                Log.d(TAG, "dispatchTouchEvent---ACTION_UP");
+                downX = 0;
+                downY = 0;
+                shouldIntercept = false;
                 break;
             }
         }
+
+
+        //Activity default dispatch
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            onUserInteraction();
+        }
+
+        if (getWindow().superDispatchTouchEvent(ev)) {
+            return true;
+        }
+
         return true;
+    }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: {
+                Log.d(TAG, "onTouchEvent---ACTION_DOWN");
+                break;
+            }
+            case MotionEvent.ACTION_MOVE: {
+                Log.d(TAG, "onTouchEvent---ACTION_MOVE");
+                break;
+            }
+            case MotionEvent.ACTION_UP: {
+                Log.d(TAG, "onTouchEvent---ACTION_UP");
+                break;
+            }
+        }
+        return super.onTouchEvent(event);
     }
 }
