@@ -9,6 +9,8 @@
     <!--app-->
     <color name="status_color_def">#FFFFFF</color>
     <color name="activity_layout_def">#FFFFFF</color>
+    <color name="root_activity_startColor">#00000000</color>
+    <color name="root_activity_endColor">#11666666</color>
 
     <!--dark-->
     <color name="dark_level_0">#000000</color>
@@ -28,4 +30,5 @@
 
     <!--login-->
     <color name="light_green">#00C5CB</color>
+
 </resources>

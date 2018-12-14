@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.stew.new_stew.utils.DeviceUtil;
+
 
 /**
  * describe:
@@ -24,6 +26,8 @@ public class MyApplication extends Application {
         super.onCreate();
         Log.d(TAG, "onCreate: ");
         instance = this;
+
+        DeviceUtil.init(instance);
     }
 
     @Override

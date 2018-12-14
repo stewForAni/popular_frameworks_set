@@ -6,8 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.stew.new_stew.R;
+import com.stew.new_stew.utils.DeviceUtil;
 import com.stew.new_stew.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
@@ -23,11 +26,13 @@ public abstract class RootActivity extends AppCompatActivity {
     private static final String TAG = RootActivity.class.getName();
     private Unbinder unbinder;
 
-
     //slide in or out variable
     private boolean shouldIntercept = false;
     private float downX = 0f;
     private float downY = 0f;
+    private float lastX = 0;
+    private View shadowView = null;
+    private View rootView = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,10 +42,10 @@ public abstract class RootActivity extends AppCompatActivity {
         setStatusBar();
         setContentView(getLayoutID());
 
-        /*
-         * bind butterKnife at RootActivity onCreate()
-         * and unbind at onDestroy()
-         */
+
+        //bind butterKnife at RootActivity onCreate()
+        //and unbind at onDestroy()
+
         unbinder = ButterKnife.bind(this);
 
         initPresenter();
@@ -67,41 +72,39 @@ public abstract class RootActivity extends AppCompatActivity {
 
     protected abstract int getLayoutID();
 
-
-    /**
-     * override startActivity(),startActivityForResult(),finish()
-     * unify overridePendingTransition() func with same slide animation
-     */
-
-    @Override
-    public void startActivity(Intent intent) {
-        super.startActivity(intent);
-        overridePendingTransition(R.anim.slide_in, 0);
-    }
-
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-        overridePendingTransition(R.anim.slide_in, 0);
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(0, R.anim.slide_out);
-    }
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+
+        //intercept activity dispatch touch event
+        //for slide the whole decor-view (activity)
 
         if (shouldIntercept) {
             return onTouchEvent(ev);
         }
+        doDispatchDetailJudge(ev);
 
+        //Activity default dispatch
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            onUserInteraction();
+        }
+        if (getWindow().superDispatchTouchEvent(ev)) {
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        doTouchDetailJudge(event);
+        return super.onTouchEvent(event);
+    }
+
+    private void doDispatchDetailJudge(MotionEvent ev) {
         switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN: {
 
+            case MotionEvent.ACTION_DOWN: {
                 Log.d(TAG, "dispatchTouchEvent---ACTION_DOWN");
+
                 //get X position to screen {getX(), get X to ti's view}
                 downX = ev.getRawX();
                 downY = ev.getRawY();
@@ -110,6 +113,8 @@ public abstract class RootActivity extends AppCompatActivity {
 
             case MotionEvent.ACTION_MOVE: {
                 Log.d(TAG, "dispatchTouchEvent---ACTION_MOVE");
+                Log.d(TAG, ev.getRawX() + "");
+
                 //x轴方向没有滑动
                 if (ev.getRawX() == downX) {
                     break;
@@ -132,54 +137,82 @@ public abstract class RootActivity extends AppCompatActivity {
                         shouldIntercept = true;
                     }
                 }
-
                 break;
             }
 
-
             case MotionEvent.ACTION_UP: {
                 Log.d(TAG, "dispatchTouchEvent---ACTION_UP");
+
                 downX = 0;
                 downY = 0;
                 shouldIntercept = false;
                 break;
             }
         }
-
-
-        //Activity default dispatch
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            onUserInteraction();
-        }
-
-        if (getWindow().superDispatchTouchEvent(ev)) {
-            return true;
-        }
-
-        return true;
     }
 
-    @Override
-    public void onUserInteraction() {
-        super.onUserInteraction();
-    }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    private void doTouchDetailJudge(MotionEvent event) {
+
+        initShadow();
+
         switch (event.getAction()) {
+
             case MotionEvent.ACTION_DOWN: {
                 Log.d(TAG, "onTouchEvent---ACTION_DOWN");
+                lastX = event.getRawX();
                 break;
             }
+
             case MotionEvent.ACTION_MOVE: {
                 Log.d(TAG, "onTouchEvent---ACTION_MOVE");
+
                 break;
             }
+
             case MotionEvent.ACTION_UP: {
                 Log.d(TAG, "onTouchEvent---ACTION_UP");
+
                 break;
             }
         }
-        return super.onTouchEvent(event);
+    }
+
+    private void initShadow() {
+        if (shadowView == null) {
+            shadowView = new View(this);
+            ViewGroup viewGroup = (ViewGroup) (getWindow().getDecorView());
+            viewGroup.addView(shadowView);
+
+            ViewGroup.LayoutParams params = shadowView.getLayoutParams();
+            params.width = (int) (DeviceUtil.getScreenWidth()*0.05);
+            params.height = DeviceUtil.getScreenHeight();
+            shadowView.setLayoutParams(params);
+            shadowView.setBackgroundResource(R.drawable.root_activity_left_shadow);
+        }
+    }
+
+
+    /**
+     * override startActivity(),startActivityForResult(),finish()
+     * unify overridePendingTransition() func with same slide animation
+     */
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        overridePendingTransition(R.anim.slide_in, 0);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        overridePendingTransition(R.anim.slide_in, 0);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0, R.anim.slide_out);
     }
 }
