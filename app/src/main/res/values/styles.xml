@@ -8,6 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:fitsSystemWindows">true</item>
+
+        <item name="android:windowBackground">@color/init_app_bg_transparent</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
     </style>
 
     <!--init app with a drawable-->

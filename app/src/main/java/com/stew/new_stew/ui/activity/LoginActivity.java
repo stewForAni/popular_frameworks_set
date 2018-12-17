@@ -33,6 +33,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     @Override
+    public void onBack() {
+        finish();
+    }
+
+
+
+    @Override
     protected void initMain() {
 
     }

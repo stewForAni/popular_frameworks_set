@@ -1,5 +1,7 @@
 package com.stew.new_stew.ui.activity;
+
 import android.os.Bundle;
+
 import com.stew.new_stew.R;
 import com.stew.new_stew.base.activity.BaseActivity;
 
@@ -24,5 +26,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected int getLayoutID() {
         return R.layout.activity_login;
+    }
+
+    @Override
+    public void onBack() {
+        finish();
     }
 }
