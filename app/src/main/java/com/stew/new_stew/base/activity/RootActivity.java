@@ -31,6 +31,7 @@ public abstract class RootActivity extends AppCompatActivity {
     //slide in or out variable
     private boolean shouldIntercept = false;
     private boolean hadJudge = false;
+    private boolean smoothScrollJudge = true;
     private float downX = 0f;
     private float downY = 0f;
     private float lastX = 0;
@@ -124,32 +125,34 @@ public abstract class RootActivity extends AppCompatActivity {
                 Log.d(TAG, "dispatchTouchEvent---ACTION_MOVE : " + ev.getRawX());
 
                 if (hadJudge) {
+                    Log.d(TAG, "hadJudge");
                     break;
                 }
 
                 //no slide at X direction
                 if (ev.getRawX() == downX) {
+                    Log.d(TAG, "no slide at X direction");
                     break;
                 }
 
                 //slide from right
                 if (ev.getRawX() < downX) {
+                    Log.d(TAG, "slide from right");
                     hadJudge = true;
                     break;
                 }
 
                 //out of range
                 if (ev.getRawX() - downX >= 100) {
+                    Log.d(TAG, "out of range");
                     hadJudge = true;
                     break;
                 }
 
                 //X direction slide from left range:0px~100px
-                if (ev.getRawX() - downX > 0) {
-                    float rate = (ev.getRawX() - downX) / (Math.abs(ev.getRawY() - downY));
-                    if ((downX < 50 && rate > 0.5f) || rate > 2) {
-                        shouldIntercept = true;
-                    }
+                if ((ev.getRawX() > downX) && (downX < 50)) {
+                    Log.d(TAG, "X direction slide from left range:0px~100px");
+                    shouldIntercept = true;
                 }
                 break;
             }
@@ -182,19 +185,24 @@ public abstract class RootActivity extends AppCompatActivity {
 
             case MotionEvent.ACTION_DOWN: {
                 Log.d(TAG, "onTouchEvent---ACTION_DOWN : " + event.getRawX());
-                lastX = event.getRawX();
+
+//                lastX = event.getRawX();
                 break;
             }
 
             case MotionEvent.ACTION_MOVE: {
                 Log.d(TAG, "onTouchEvent---ACTION_MOVE : " + event.getRawX());
 
-                //move root view bf finger
-                rootView.setTranslationX(event.getRawX() - lastX + rootView.getTranslationX());
-                //move shadow view together
-                shadowView.setTranslationX(-shadowView.getWidth() + rootView.getTranslationX());
+                if(smoothScrollJudge){
+                    smoothScrollJudge = false;
+                    lastX = event.getRawX();
+                }
 
-                lastX = event.getRawX();
+                float X = event.getRawX();
+                float TX = rootView.getTranslationX();
+                rootView.setTranslationX(X - lastX + TX);
+                shadowView.setTranslationX(-shadowView.getWidth() + TX);
+                lastX = X;
 
                 break;
             }
@@ -232,6 +240,7 @@ public abstract class RootActivity extends AppCompatActivity {
                 lastX = 0;
                 shouldIntercept = false;
                 hadJudge = false;
+                smoothScrollJudge = true;
                 downX = 0;
                 downY = 0;
                 break;
