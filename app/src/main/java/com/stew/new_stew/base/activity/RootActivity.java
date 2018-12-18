@@ -50,7 +50,6 @@ public abstract class RootActivity extends AppCompatActivity {
         setStatusBar();
         setContentView(getLayoutID());
 
-
         //bind butterKnife at RootActivity onCreate()
         //and unbind at onDestroy()
 
@@ -85,10 +84,10 @@ public abstract class RootActivity extends AppCompatActivity {
 
         //intercept activity dispatch touch event
         //for slide the whole decor-view (activity)
-
         if (shouldIntercept) {
             return onTouchEvent(ev);
         }
+
         doDispatchDetailJudge(ev);
 
         //Activity default dispatch
@@ -112,7 +111,7 @@ public abstract class RootActivity extends AppCompatActivity {
         switch (ev.getAction()) {
 
             case MotionEvent.ACTION_DOWN: {
-                Log.d(TAG, "dispatchTouchEvent---ACTION_DOWN");
+                Log.d(TAG, "dispatchTouchEvent---ACTION_DOWN : " + ev.getRawX());
 
                 //get X position to screen {getX(), get X to ti's view}
                 downX = ev.getRawX();
@@ -122,8 +121,7 @@ public abstract class RootActivity extends AppCompatActivity {
             }
 
             case MotionEvent.ACTION_MOVE: {
-                Log.d(TAG, "dispatchTouchEvent---ACTION_MOVE");
-                Log.d(TAG, ev.getRawX() + "");
+                Log.d(TAG, "dispatchTouchEvent---ACTION_MOVE : " + ev.getRawX());
 
                 if (hadJudge) {
                     break;
@@ -157,7 +155,7 @@ public abstract class RootActivity extends AppCompatActivity {
             }
 
             case MotionEvent.ACTION_UP: {
-                Log.d(TAG, "dispatchTouchEvent---ACTION_UP");
+                Log.d(TAG, "dispatchTouchEvent---ACTION_UP : " + ev.getRawX());
 
                 downX = 0;
                 downY = 0;
@@ -183,13 +181,13 @@ public abstract class RootActivity extends AppCompatActivity {
         switch (event.getAction()) {
 
             case MotionEvent.ACTION_DOWN: {
-                Log.d(TAG, "onTouchEvent---ACTION_DOWN");
+                Log.d(TAG, "onTouchEvent---ACTION_DOWN : " + event.getRawX());
                 lastX = event.getRawX();
                 break;
             }
 
             case MotionEvent.ACTION_MOVE: {
-                Log.d(TAG, "onTouchEvent---ACTION_MOVE");
+                Log.d(TAG, "onTouchEvent---ACTION_MOVE : " + event.getRawX());
 
                 //move root view bf finger
                 rootView.setTranslationX(event.getRawX() - lastX + rootView.getTranslationX());
@@ -202,7 +200,7 @@ public abstract class RootActivity extends AppCompatActivity {
             }
 
             case MotionEvent.ACTION_UP: {
-                Log.d(TAG, "onTouchEvent---ACTION_UP");
+                Log.d(TAG, "onTouchEvent---ACTION_UP : " + event.getRawX());
 
                 velocityTracker.computeCurrentVelocity(1000, maxFlingVelocity);
 
@@ -243,23 +241,20 @@ public abstract class RootActivity extends AppCompatActivity {
 
 
     /**
-     * add shadow view to decor view
+     * add shadow view to decor view at index = 0
      */
     private void initShadow() {
         if (shadowView == null) {
             shadowView = new View(this);
             ViewGroup viewGroup = (ViewGroup) (getWindow().getDecorView());
-            viewGroup.addView(shadowView);
-
+            viewGroup.addView(shadowView, 0);
             ViewGroup.LayoutParams params = shadowView.getLayoutParams();
             params.width = (int) (DeviceUtil.getScreenWidth() * 0.05);
             params.height = DeviceUtil.getScreenHeight();
             shadowView.setLayoutParams(params);
             shadowView.setBackgroundResource(R.drawable.root_activity_left_shadow);
             shadowView.setTranslationX(-params.width);
-
-            rootView = viewGroup.getChildAt(0);
-
+            rootView = viewGroup.getChildAt(1);
         }
     }
 
@@ -268,7 +263,6 @@ public abstract class RootActivity extends AppCompatActivity {
      * override startActivity(),startActivityForResult(),finish()
      * unify overridePendingTransition() func with same slide animation
      */
-
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
