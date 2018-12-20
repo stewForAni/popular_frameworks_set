@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--base radius-->
+    <!--base-->
+    <dimen name="base_toolbar_height">46dp</dimen>
+
     <dimen name="radius_level_1">5dp</dimen>
     <dimen name="radius_level_2">10dp</dimen>
     <dimen name="radius_level_3">15dp</dimen>

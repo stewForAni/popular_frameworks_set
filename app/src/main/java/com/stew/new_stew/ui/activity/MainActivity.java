@@ -2,12 +2,11 @@ package com.stew.new_stew.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-
 import com.stew.new_stew.R;
 import com.stew.new_stew.base.activity.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 /**
  * describe: MainActivity
