@@ -3,18 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
         <item name="android:fitsSystemWindows">true</item>
 
         <item name="android:windowBackground">@color/init_app_bg_transparent</item>
-        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <!--init app with a drawable-->
-    <style name="myAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="initAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/init_app_bg</item>
     </style>
 
@@ -25,4 +21,10 @@
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">30dp</item>
     </style>
+
+    <style name="toolbar">
+        <item name="android:textColor">@color/dark_level_1</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

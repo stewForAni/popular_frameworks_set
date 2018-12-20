@@ -3,6 +3,7 @@ package com.stew.new_stew.base.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,7 +34,6 @@ public abstract class RootActivity extends AppCompatActivity {
     private boolean hadJudge = false;
     private boolean smoothScrollJudge = true;
     private float downX = 0f;
-    private float downY = 0f;
     private float lastX = 0;
     private View shadowView = null;
     private View rootView = null;
@@ -45,7 +45,6 @@ public abstract class RootActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
         setStatusBar();
@@ -60,6 +59,7 @@ public abstract class RootActivity extends AppCompatActivity {
         initMain();
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -73,6 +73,16 @@ public abstract class RootActivity extends AppCompatActivity {
         StatusBarUtil.transparencyStatusBar(this);
         StatusBarUtil.StatusBarLightMode(this);
     }
+
+    public void initToolbar(String title) {
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(title);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
 
     protected abstract void initPresenter();
 
@@ -116,7 +126,6 @@ public abstract class RootActivity extends AppCompatActivity {
 
                 //get X position to screen {getX(), get X to ti's view}
                 downX = ev.getRawX();
-                downY = ev.getRawY();
                 hadJudge = false;
                 break;
             }
@@ -161,7 +170,6 @@ public abstract class RootActivity extends AppCompatActivity {
                 Log.d(TAG, "dispatchTouchEvent---ACTION_UP : " + ev.getRawX());
 
                 downX = 0;
-                downY = 0;
                 shouldIntercept = false;
                 hadJudge = false;
                 break;
@@ -193,7 +201,7 @@ public abstract class RootActivity extends AppCompatActivity {
             case MotionEvent.ACTION_MOVE: {
                 Log.d(TAG, "onTouchEvent---ACTION_MOVE : " + event.getRawX());
 
-                if(smoothScrollJudge){
+                if (smoothScrollJudge) {
                     smoothScrollJudge = false;
                     lastX = event.getRawX();
                 }
@@ -222,13 +230,13 @@ public abstract class RootActivity extends AppCompatActivity {
                 //judge if back
                 if (downX < 50 && velocityX > 1000) {
                     //finger down at screen left 0~50px and speed > 1000
-                    onBack();
+                    onActivityFinish();
                 } else if (velocityX > 3600) {
                     //speed > 3600
-                    onBack();
+                    onActivityFinish();
                 } else if (rootView.getTranslationX() > (DeviceUtil.getScreenWidth() * 0.3)) {
                     //slide distance > 30% of screen
-                    onBack();
+                    onActivityFinish();
                 } else {
                     //root view back
                     rootView.animate().translationX(0).setDuration(200).start();
@@ -242,7 +250,6 @@ public abstract class RootActivity extends AppCompatActivity {
                 hadJudge = false;
                 smoothScrollJudge = true;
                 downX = 0;
-                downY = 0;
                 break;
             }
         }
@@ -255,11 +262,14 @@ public abstract class RootActivity extends AppCompatActivity {
     private void initShadow() {
         if (shadowView == null) {
             shadowView = new View(this);
+
             ViewGroup viewGroup = (ViewGroup) (getWindow().getDecorView());
+
             viewGroup.addView(shadowView, 0);
             ViewGroup.LayoutParams params = shadowView.getLayoutParams();
             params.width = (int) (DeviceUtil.getScreenWidth() * 0.05);
             params.height = DeviceUtil.getScreenHeight();
+
             shadowView.setLayoutParams(params);
             shadowView.setBackgroundResource(R.drawable.root_activity_left_shadow);
             shadowView.setTranslationX(-params.width);
@@ -290,5 +300,5 @@ public abstract class RootActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.no, R.anim.slide_out);
     }
 
-    public abstract void onBack();
+    public abstract void onActivityFinish();
 }

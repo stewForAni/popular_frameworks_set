@@ -18,6 +18,7 @@
     <color name="dark_level_2">#666666</color>
     <color name="dark_level_3">#999999</color>
     <color name="dark_level_4">#CCCCCC</color>
+    <color name="dark_level_5">#EEEEEE</color>
 
     <!--white-->
     <color name="color_white">#FFFFFF</color>

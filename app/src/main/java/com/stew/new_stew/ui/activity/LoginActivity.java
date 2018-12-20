@@ -1,6 +1,8 @@
 package com.stew.new_stew.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,16 +30,20 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     TextView loginBtnWithEmail;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     protected int getLayoutID() {
         return R.layout.activity_login;
     }
 
     @Override
-    public void onBack() {
+    public void onActivityFinish() {
         finish();
     }
-
-
 
     @Override
     protected void initMain() {

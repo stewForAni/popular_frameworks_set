@@ -15,7 +15,7 @@
         <activity
             android:name="com.stew.new_stew.ui.activity.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/myAppTheme"
+            android:theme="@style/initAppTheme"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
