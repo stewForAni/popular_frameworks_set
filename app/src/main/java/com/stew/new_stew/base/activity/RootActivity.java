@@ -35,7 +35,10 @@ public abstract class RootActivity extends AppCompatActivity {
     private boolean smoothScrollJudge = true;
     private float downX = 0f;
     private float lastX = 0;
+
     private View shadowView = null;
+    private float shadowWidth;
+
     private View rootView = null;
     private VelocityTracker velocityTracker = null;
     private int maxFlingVelocity = 0;
@@ -47,7 +50,7 @@ public abstract class RootActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
-        setStatusBar();
+//        setStatusBar();
         setContentView(getLayoutID());
 
         //bind butterKnife at RootActivity onCreate()
@@ -209,7 +212,7 @@ public abstract class RootActivity extends AppCompatActivity {
                 float X = event.getRawX();
                 float TX = rootView.getTranslationX();
                 rootView.setTranslationX(X - lastX + TX);
-                shadowView.setTranslationX(-shadowView.getWidth() + TX);
+                shadowView.setTranslationX(-shadowWidth + TX);
                 lastX = X;
 
                 break;
@@ -239,9 +242,9 @@ public abstract class RootActivity extends AppCompatActivity {
                     onActivityFinish();
                 } else {
                     //root view back
-                    rootView.animate().translationX(0).setDuration(200).start();
+                    rootView.animate().translationX(0).setDuration(300).start();
                     //shadow view back
-                    shadowView.animate().translationX(-shadowView.getWidth()).setDuration(200).start();
+                    shadowView.animate().translationX(-shadowWidth).setDuration(300).start();
                 }
 
                 //reset
@@ -265,15 +268,22 @@ public abstract class RootActivity extends AppCompatActivity {
 
             ViewGroup viewGroup = (ViewGroup) (getWindow().getDecorView());
 
+            Log.d(TAG, ""+viewGroup.getChildCount()+"---"+viewGroup.getChildAt(0).toString());
             viewGroup.addView(shadowView, 0);
             ViewGroup.LayoutParams params = shadowView.getLayoutParams();
-            params.width = (int) (DeviceUtil.getScreenWidth() * 0.05);
-            params.height = DeviceUtil.getScreenHeight();
+
+            shadowWidth = (float) (DeviceUtil.getScreenWidth() * 0.05);
+            params.width = (int) shadowWidth;
+            params.height = DeviceUtil.getScreenHeight()+DeviceUtil.getStatusBarHeight();
 
             shadowView.setLayoutParams(params);
             shadowView.setBackgroundResource(R.drawable.root_activity_left_shadow);
             shadowView.setTranslationX(-params.width);
             rootView = viewGroup.getChildAt(1);
+
+
+            Log.d(TAG, ""+viewGroup.getChildCount()+"---"+viewGroup.getChildAt(0).toString());
+            Log.d(TAG, ""+viewGroup.getChildCount()+"---"+viewGroup.getChildAt(1).toString());
         }
     }
 

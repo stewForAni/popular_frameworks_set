@@ -25,7 +25,6 @@ public class DeviceUtil {
     }
 
     public static int getScreenWidth() {
-
         if (windowManager == null) {
             return 0;
         }
@@ -36,7 +35,6 @@ public class DeviceUtil {
     }
 
     public static int getScreenHeight() {
-
         if (windowManager == null) {
             return 0;
         }
@@ -44,6 +42,15 @@ public class DeviceUtil {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
+    }
+
+    public static int getStatusBarHeight() {
+        int height = 0;
+        int resourceId = mContext.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            height = mContext.getResources().getDimensionPixelSize(resourceId);
+        }
+        return height;
     }
 
 }

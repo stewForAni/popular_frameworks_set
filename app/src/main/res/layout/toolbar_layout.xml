@@ -4,6 +4,6 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="46dp"
-    android:background="@color/color_white"
+    android:background="@color/init_app_bg_endColor"
     app:subtitleTextAppearance="@style/toolbar" />
 

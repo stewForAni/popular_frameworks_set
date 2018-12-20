@@ -27,6 +27,12 @@ public class MyApplication extends Application {
         Log.d(TAG, "onCreate: ");
         instance = this;
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         DeviceUtil.init(instance);
     }
 
