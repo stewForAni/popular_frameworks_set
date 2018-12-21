@@ -2,8 +2,13 @@
 
     <!-- Base application theme. -->
     <style name="appTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!--<item name="android:windowBackground">@color/init_app_bg_transparent</item>-->
-        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowBackground">@color/init_app_bg_startColor</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="appThemeForSlideActivity" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/init_app_bg_transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
     
     <style name="normalActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">

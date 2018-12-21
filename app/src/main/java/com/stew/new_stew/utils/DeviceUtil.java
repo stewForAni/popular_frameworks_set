@@ -1,5 +1,6 @@
 package com.stew.new_stew.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
@@ -11,8 +12,9 @@ import android.view.WindowManager;
  */
 public class DeviceUtil {
 
-    private static Context mContext;
-    private static WindowManager windowManager;
+    @SuppressLint("StaticFieldLeak")
+    private static Context mContext = null;
+    private static WindowManager windowManager = null;
 
     public static void init(Context context) {
         if (context == null) {

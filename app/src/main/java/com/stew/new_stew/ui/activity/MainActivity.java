@@ -1,14 +1,10 @@
 package com.stew.new_stew.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.stew.new_stew.R;
 import com.stew.new_stew.base.activity.BaseActivity;
-
-import butterknife.BindView;
-
 
 /**
  * describe: MainActivity
@@ -18,15 +14,15 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getName();
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTheme(R.style.appTheme);
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
-        setSupportActionBar(toolbar);
-        initToolbar("Main");
+        setStatusBarTransparent();
+
     }
 
     @Override
@@ -63,8 +59,4 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @Override
-    public void onActivityFinish() {
-        finish();
-    }
 }

@@ -37,7 +37,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         setTheme(R.style.normalActivityTheme);
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
-        setStatusBar();
+        setStatusBarTransparentWithLightMode();
     }
 
     @Override
@@ -70,11 +70,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     @Override
-    public void onActivityFinish() {
-        finish();
-    }
-
-    @Override
     protected void initMain() {
 
     }
@@ -96,6 +91,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
                 break;
         }
     }
