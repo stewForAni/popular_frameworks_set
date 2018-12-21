@@ -6,14 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
+
 
 import com.stew.new_stew.R;
-import com.stew.new_stew.utils.DeviceUtil;
 import com.stew.new_stew.utils.StatusBarUtil;
 
 import butterknife.ButterKnife;
@@ -28,8 +23,6 @@ public abstract class RootActivity extends AppCompatActivity {
 
     private static final String TAG = RootActivity.class.getName();
     private Unbinder unbinder;
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

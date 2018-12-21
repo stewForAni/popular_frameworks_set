@@ -1,5 +1,7 @@
 package com.stew.new_stew.base.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -32,6 +34,36 @@ public abstract class SlideBaseActivity extends BaseActivity {
     private View rootView = null;
     private VelocityTracker velocityTracker = null;
     private int maxFlingVelocity = 0;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.appThemeForSlideActivity);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, TAG + "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, TAG + "onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, TAG + "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, TAG + "onDestroy");
+    }
 
     @Override
     protected void initMain() {

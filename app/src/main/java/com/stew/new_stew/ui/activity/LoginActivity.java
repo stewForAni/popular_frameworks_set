@@ -34,7 +34,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setTheme(R.style.normalActivityTheme);
+        setTheme(R.style.whiteStatusTheme);
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
         setStatusBarTransparentWithLightMode();
