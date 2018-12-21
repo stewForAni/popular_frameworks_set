@@ -43,14 +43,10 @@ public abstract class RootActivity extends AppCompatActivity {
     private VelocityTracker velocityTracker = null;
     private int maxFlingVelocity = 0;
 
-    protected RootActivity() {
-    }
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
-//        setStatusBar();
         setContentView(getLayoutID());
 
         //bind butterKnife at RootActivity onCreate()
@@ -60,6 +56,7 @@ public abstract class RootActivity extends AppCompatActivity {
 
         initPresenter();
         initMain();
+        Log.d(TAG, TAG + "onCreate: end");
     }
 
 
@@ -72,13 +69,8 @@ public abstract class RootActivity extends AppCompatActivity {
         }
     }
 
-    private void setStatusBar() {
-        StatusBarUtil.transparencyStatusBar(this);
-        StatusBarUtil.StatusBarLightMode(this);
-    }
 
     public void initToolbar(String title) {
-
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle(title);
@@ -86,6 +78,10 @@ public abstract class RootActivity extends AppCompatActivity {
         }
     }
 
+    public void setStatusBar() {
+        StatusBarUtil.transparencyStatusBar(this);
+        StatusBarUtil.StatusBarLightMode(this);
+    }
 
     protected abstract void initPresenter();
 
@@ -258,35 +254,24 @@ public abstract class RootActivity extends AppCompatActivity {
         }
     }
 
-
     /**
      * add shadow view to decor view at index = 0
      */
     private void initShadow() {
         if (shadowView == null) {
             shadowView = new View(this);
-
             ViewGroup viewGroup = (ViewGroup) (getWindow().getDecorView());
-
-            Log.d(TAG, ""+viewGroup.getChildCount()+"---"+viewGroup.getChildAt(0).toString());
             viewGroup.addView(shadowView, 0);
             ViewGroup.LayoutParams params = shadowView.getLayoutParams();
-
             shadowWidth = (float) (DeviceUtil.getScreenWidth() * 0.05);
             params.width = (int) shadowWidth;
-            params.height = DeviceUtil.getScreenHeight()+DeviceUtil.getStatusBarHeight();
-
+            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
             shadowView.setLayoutParams(params);
             shadowView.setBackgroundResource(R.drawable.root_activity_left_shadow);
             shadowView.setTranslationX(-params.width);
             rootView = viewGroup.getChildAt(1);
-
-
-            Log.d(TAG, ""+viewGroup.getChildCount()+"---"+viewGroup.getChildAt(0).toString());
-            Log.d(TAG, ""+viewGroup.getChildCount()+"---"+viewGroup.getChildAt(1).toString());
         }
     }
-
 
     /**
      * override startActivity(),startActivityForResult(),finish()

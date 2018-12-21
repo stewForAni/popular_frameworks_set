@@ -1,19 +1,26 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-
-        <!--<item name="android:fitsSystemWindows">true</item>-->
-
-        <item name="android:windowBackground">@color/init_app_bg_transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
+    <style name="appTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="android:windowBackground">@color/init_app_bg_transparent</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+    </style>
+    
+    <style name="normalActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
     <!--init app with a drawable-->
     <style name="initAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/init_app_bg</item>
     </style>
+
+    <!--toolbar-->
+    <style name="toolbar">
+        <item name="android:textColor">@color/dark_level_1</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 
     <!--login-->
     <style name="login_btn">
@@ -23,9 +30,5 @@
         <item name="android:layout_marginRight">30dp</item>
     </style>
 
-    <style name="toolbar">
-        <item name="android:textColor">@color/dark_level_1</item>
-        <item name="android:textSize">16sp</item>
-    </style>
 
 </resources>
