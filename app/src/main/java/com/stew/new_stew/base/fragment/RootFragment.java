@@ -23,12 +23,10 @@ public abstract class RootFragment extends Fragment {
     private View rootView;
     private Unbinder unbinder;
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        Log.d(TAG, "setUserVisibleHint: ");
-    }
-
+    /**
+     * current Fragment view is created
+     */
+    private boolean isViewCreated = false;
 
     /**
      * return the layout of fragment
@@ -43,6 +41,20 @@ public abstract class RootFragment extends Fragment {
     public abstract void initView(View rootView);
 
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
+        if (isViewCreated) {
+            if (isVisibleToUser) {
+                dealFragment(true);
+            } else {
+                dealFragment(false);
+            }
+        }
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,11 +67,42 @@ public abstract class RootFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * onViewCreated will do soon after onCreateView()
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Log.d(TAG, "onViewCreated: ");
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: ");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: ");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView: ");
+    }
+
+    public void dealFragment(boolean isVisible) {
+        Log.d(TAG, "dealFragment: " + isVisible);
+    }
 
 }
