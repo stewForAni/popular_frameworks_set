@@ -76,6 +76,11 @@ public abstract class RootFragment extends Fragment {
         Log.d(TAG, "onViewCreated: ");
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "onActivityCreated: ");
+    }
 
     @Override
     public void onStart() {
@@ -99,10 +104,22 @@ public abstract class RootFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         Log.d(TAG, "onDestroyView: ");
+        if (unbinder != null && unbinder != Unbinder.EMPTY) {
+            unbinder.unbind();
+            unbinder = null;
+        }
     }
 
     public void dealFragment(boolean isVisible) {
-        Log.d(TAG, "dealFragment: " + isVisible);
+        if (isVisible) {
+            //fragment visible
+            Log.d(TAG, "dealFragment: Visible");
+
+        } else {
+            //fragment invisible
+            Log.d(TAG, "dealFragment: isnVisible");
+
+        }
     }
 
 }

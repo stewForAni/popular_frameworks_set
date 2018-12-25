@@ -26,6 +26,19 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected int getLayoutID() {
+        Log.d(TAG, "getLayoutID: ");
+        return R.layout.activity_main;
+    }
+
+
+    @Override
+    protected void initMain() {
+        Log.d(TAG, "initMain: ");
+
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         Log.d(TAG, TAG + "onStart");
@@ -47,16 +60,6 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, TAG + "onDestroy");
-    }
-
-    @Override
-    protected void initMain() {
-
-    }
-
-    @Override
-    protected int getLayoutID() {
-        return R.layout.activity_main;
     }
 
 }
