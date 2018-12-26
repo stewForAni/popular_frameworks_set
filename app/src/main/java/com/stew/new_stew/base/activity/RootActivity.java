@@ -24,17 +24,17 @@ public abstract class RootActivity extends AppCompatActivity {
     private static final String TAG = RootActivity.class.getName();
     private Unbinder unbinder;
 
+    /**
+     * @param savedInstanceState savedInstanceState
+     * bind butterKnife at RootActivity onCreate() and unbind at onDestroy()
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate");
         setContentView(getLayoutID());
 
-        //bind butterKnife at RootActivity onCreate()
-        //and unbind at onDestroy()
-
         unbinder = ButterKnife.bind(this);
-
         initPresenter();
         initMain();
     }
@@ -74,7 +74,6 @@ public abstract class RootActivity extends AppCompatActivity {
     protected abstract int getLayoutID();
 
 
-
     /**
      * override startActivity(),startActivityForResult(),finish()
      * unify overridePendingTransition() func with same slide animation
@@ -97,4 +96,7 @@ public abstract class RootActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.no, R.anim.slide_out);
     }
 
+    public void finishWithNoAnimation(){
+        super.finish();
+    }
 }

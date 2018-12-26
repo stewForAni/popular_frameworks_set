@@ -1,7 +1,6 @@
 package com.stew.new_stew.ui.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -81,6 +80,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
 
+    /**
+     * bug tip for enter Activity with FLAG_ACTIVITY_NEW_TASK flag:
+     * If startActivity() and finish() both do overridePendingTransition(),
+     * overridePendingTransition() will not work.
+     * So delete the overridePendingTransition() for finish().
+     */
+
     @OnClick({R.id.login_btn_with_wx, R.id.login_btn_with_qq, R.id.login_btn_with_email})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -92,7 +98,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                finish();
+                finishWithNoAnimation();
                 break;
         }
     }
