@@ -31,5 +31,8 @@
 
     <!--login-->
     <color name="light_green">#00C5CB</color>
+    <color name="top_layout_start_color">#00C1CC</color>
+    <color name="top_layout_center_color">#3D72D8</color>
+    <color name="top_layout_end_color">#782AE6</color>
 
 </resources>

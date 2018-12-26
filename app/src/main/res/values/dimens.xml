@@ -3,6 +3,7 @@
 
     <!--base-->
     <dimen name="base_toolbar_height">46dp</dimen>
+    <dimen name="normal_status_bar_height">25dp</dimen>
 
     <dimen name="radius_level_1">5dp</dimen>
     <dimen name="radius_level_2">10dp</dimen>

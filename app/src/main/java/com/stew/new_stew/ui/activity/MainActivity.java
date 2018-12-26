@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.stew.new_stew.R;
 import com.stew.new_stew.base.activity.BaseActivity;
@@ -12,6 +14,7 @@ import com.stew.new_stew.ui.adapter.MainPageViewAdapter;
 import com.stew.new_stew.ui.fragment.LessonTabFragment;
 import com.stew.new_stew.ui.fragment.MainTabFragment;
 import com.stew.new_stew.ui.fragment.MeTabFragment;
+import com.stew.new_stew.utils.DeviceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,18 +30,18 @@ public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getName();
 
-    private List<Fragment> fragmentList;
-    private FragmentPagerAdapter adapter;
-
     @BindView(R.id.main_viewpager)
     ViewPager mainViewpager;
+
+    @BindView(R.id.top_bar_rl)
+    RelativeLayout topBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         setTheme(R.style.appTheme);
         super.onCreate(savedInstanceState);
-        Log.d(TAG, TAG + "onCreate");
+        Log.d(TAG, TAG + "onCreate" + DeviceUtil.getStatusBarHeight());
         setStatusBarTransparent();
 
     }
@@ -54,12 +57,14 @@ public class MainActivity extends BaseActivity {
     protected void initMain() {
         Log.d(TAG, "initMain: ");
 
-        fragmentList = new ArrayList<>();
+        initTopBarLayout();
+
+        List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new MainTabFragment());
         fragmentList.add(new LessonTabFragment());
         fragmentList.add(new MeTabFragment());
 
-        adapter = new MainPageViewAdapter(getSupportFragmentManager(), fragmentList);
+        FragmentPagerAdapter adapter = new MainPageViewAdapter(getSupportFragmentManager(), fragmentList);
         mainViewpager.setAdapter(adapter);
 
         mainViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -79,6 +84,15 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void initTopBarLayout() {
+        RelativeLayout relativeLayout = new RelativeLayout(this);
+        int topBarLayoutHeight = DeviceUtil.getStatusBarHeight() + DeviceUtil.dip2px(this, 46);
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,topBarLayoutHeight);
+        relativeLayout.setLayoutParams(params);
+        relativeLayout.setBackgroundResource(R.drawable.top_layout_gradient);
+        topBarLayout.addView(relativeLayout);
     }
 
     @Override
