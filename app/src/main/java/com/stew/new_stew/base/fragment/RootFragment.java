@@ -19,7 +19,7 @@ import butterknife.Unbinder;
  */
 public abstract class RootFragment extends Fragment {
 
-    private static final String TAG = RootFragment.class.getName();
+    private final String TAG = this.getClass().getSimpleName();
     private View rootView;
     private Unbinder unbinder;
 

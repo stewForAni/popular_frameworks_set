@@ -1,7 +1,6 @@
 package com.stew.new_stew.ui.fragment;
 
 import android.view.View;
-
 import com.stew.new_stew.R;
 import com.stew.new_stew.base.fragment.RootFragment;
 
@@ -11,6 +10,7 @@ import com.stew.new_stew.base.fragment.RootFragment;
  * author: stew (https://github.com/stewForAni)
  */
 public class LessonTabFragment extends RootFragment {
+
     @Override
     public int getLayoutID() {
         return R.layout.fragment_lesson;
@@ -20,4 +20,5 @@ public class LessonTabFragment extends RootFragment {
     public void initView(View rootView) {
 
     }
+
 }

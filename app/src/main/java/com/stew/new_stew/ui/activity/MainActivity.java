@@ -1,10 +1,22 @@
 package com.stew.new_stew.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 
 import com.stew.new_stew.R;
 import com.stew.new_stew.base.activity.BaseActivity;
+import com.stew.new_stew.ui.adapter.MainPageViewAdapter;
+import com.stew.new_stew.ui.fragment.LessonTabFragment;
+import com.stew.new_stew.ui.fragment.MainTabFragment;
+import com.stew.new_stew.ui.fragment.MeTabFragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * describe: MainActivity
@@ -14,6 +26,12 @@ import com.stew.new_stew.base.activity.BaseActivity;
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getName();
+
+    private List<Fragment> fragmentList;
+    private FragmentPagerAdapter adapter;
+
+    @BindView(R.id.main_viewpager)
+    ViewPager mainViewpager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +53,31 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initMain() {
         Log.d(TAG, "initMain: ");
+
+        fragmentList = new ArrayList<>();
+        fragmentList.add(new MainTabFragment());
+        fragmentList.add(new LessonTabFragment());
+        fragmentList.add(new MeTabFragment());
+
+        adapter = new MainPageViewAdapter(getSupportFragmentManager(), fragmentList);
+        mainViewpager.setAdapter(adapter);
+
+        mainViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
 
     }
 

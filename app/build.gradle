@@ -39,5 +39,7 @@ dependencies {
     implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation rootProject.ext.dependencies["constraint-layout"]
     implementation rootProject.ext.dependencies["butterknife"]
+    implementation rootProject.ext.dependencies["support-v4"]
+
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 }
