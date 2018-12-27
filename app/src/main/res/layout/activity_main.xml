@@ -8,27 +8,60 @@
     tools:context=".ui.activity.MainActivity">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
-            android:id="@+id/top_bar_rl"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="@dimen/normal_status_bar_height" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/main_viewpager"
+            <RelativeLayout
+                android:id="@+id/top_bar_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/normal_status_bar_height" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/main_bottom_tab_height">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/main_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_white" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/main_shadow_view_height"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/shadow_top" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/main_shadow_view_height"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/shadow_bottom" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="@dimen/main_bottom_tab_height"
+            android:layout_alignParentBottom="true"
+            android:background="@color/dark_level_3"
+            android:orientation="horizontal">
 
+        </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
