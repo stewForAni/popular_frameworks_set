@@ -97,17 +97,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mainViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
             }
 
             @Override
             public void onPageSelected(int i) {
-
+                Log.d(TAG, "onPageSelected: " + i);
+                switch (i) {
+                    case 0: {
+                        onClick(mainTabLlHome);
+                        break;
+                    }
+                    case 1: {
+                        onClick(mainTabLlLesson);
+                        break;
+                    }
+                    case 2: {
+                        onClick(mainTabLlMe);
+                        break;
+                    }
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
             }
         });
 
@@ -115,7 +127,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void initTopBarLayout() {
         RelativeLayout relativeLayout = new RelativeLayout(this);
-        int topBarLayoutHeight = DeviceUtil.getStatusBarHeight() + DeviceUtil.dip2px(this, 46);
+        int topBarLayoutHeight = DeviceUtil.getStatusBarHeight() + DeviceUtil.dip2px(this, CommonVarUtil.TOP_TOOL_BAR_HEIGHT);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, topBarLayoutHeight);
         relativeLayout.setLayoutParams(params);
         relativeLayout.setBackgroundResource(R.drawable.top_layout_gradient);
@@ -141,24 +153,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
 
         initIcon();
-
-        switch (v.getId()) {
+        switch (clickTabID) {
 
             case R.id.main_tab_ll_home: {
                 mainTabIvHome.setImageResource(R.drawable.main_tab_icon_home_selected);
                 mainTabTxHome.setTextSize(TypedValue.COMPLEX_UNIT_SP, CommonVarUtil.MAIN_TAB_TEXT_SIZE_SELECTED);
+                mainViewpager.setCurrentItem(0);
                 break;
             }
 
             case R.id.main_tab_ll_lesson: {
                 mainTabIvLesson.setImageResource(R.drawable.main_tab_icon_lesson_selected);
                 mainTabTxLesson.setTextSize(TypedValue.COMPLEX_UNIT_SP, CommonVarUtil.MAIN_TAB_TEXT_SIZE_SELECTED);
+                mainViewpager.setCurrentItem(1);
                 break;
             }
 
             case R.id.main_tab_ll_me: {
                 mainTabIvMe.setImageResource(R.drawable.main_tab_icon_me_selected);
                 mainTabTxMe.setTextSize(TypedValue.COMPLEX_UNIT_SP, CommonVarUtil.MAIN_TAB_TEXT_SIZE_SELECTED);
+                mainViewpager.setCurrentItem(2);
                 break;
             }
         }
@@ -168,6 +182,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mainTabIvHome.setImageResource(R.drawable.main_tab_icon_home);
         mainTabIvLesson.setImageResource(R.drawable.main_tab_icon_lesson);
         mainTabIvMe.setImageResource(R.drawable.main_tab_icon_me);
+
         mainTabTxHome.setTextSize(TypedValue.COMPLEX_UNIT_SP, CommonVarUtil.MAIN_TAB_TEXT_SIZE);
         mainTabTxLesson.setTextSize(TypedValue.COMPLEX_UNIT_SP, CommonVarUtil.MAIN_TAB_TEXT_SIZE);
         mainTabTxMe.setTextSize(TypedValue.COMPLEX_UNIT_SP, CommonVarUtil.MAIN_TAB_TEXT_SIZE);
