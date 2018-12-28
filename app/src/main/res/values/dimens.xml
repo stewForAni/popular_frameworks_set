@@ -28,7 +28,9 @@
     <dimen name="main_fragment_search_ts">14sp</dimen>
 
     <!--lesson fragment-->
-    <dimen name="lesson_fragment_title_ts">16sp</dimen>
+    <dimen name="lesson_fragment_title_ts">18sp</dimen>
+
+    <!--me fragment-->
 
 
 </resources>
