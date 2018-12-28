@@ -10,4 +10,9 @@
     <string name="login_with_qq">Continue with QQ</string>
     <string name="login_with_wx">Continue with WeiXin</string>
     <string name="login_with_email">Continue with email</string>
+
+    <!--main fragment-->
+    <string name="search_for_something">search for something ...</string>
+    <!--lesson fragment-->
+    <string name="your_lesson">Your Lesson</string>
 </resources>

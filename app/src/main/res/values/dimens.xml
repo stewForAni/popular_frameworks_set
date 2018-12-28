@@ -15,13 +15,20 @@
     <dimen name="login_text2">25sp</dimen>
     <dimen name="login_text3">18sp</dimen>
 
-    <!--main-->
+    <!--main activity-->
     <dimen name="main_bottom_tab_height">50dp</dimen>
     <dimen name="main_shadow_view_height">5dp</dimen>
+
+    <!--main fragment-->
     <dimen name="main_fragment_search_bar_height">40dp</dimen>
     <dimen name="main_fragment_search_bar_ml">15dp</dimen>
     <dimen name="main_fragment_search_bar_mr">15dp</dimen>
-    <dimen name="main_fragment_search_bar_mt">-50dp</dimen>
+    <dimen name="main_fragment_search_bar_mt">10dp</dimen>
+    <dimen name="main_fragment_edit_mr">10dp</dimen>
+    <dimen name="main_fragment_search_ts">14sp</dimen>
+
+    <!--lesson fragment-->
+    <dimen name="lesson_fragment_title_ts">16sp</dimen>
 
 
 </resources>

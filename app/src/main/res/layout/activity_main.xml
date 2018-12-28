@@ -1,43 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/activity_layout_def">
 
-    <LinearLayout
-        android:id="@+id/top_bar_ll"
+    <RelativeLayout
+        android:id="@+id/main_rl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
-        android:orientation="vertical">
+        android:layout_marginBottom="@dimen/main_bottom_tab_height">
 
-        <RelativeLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/main_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/main_bottom_tab_height"
-            android:clipChildren="false">
+            />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/main_viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/color_white"
-                android:clipChildren="false" />
+        <View
+            android:id="@+id/main_top_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_shadow_view_height"
+            android:background="@drawable/shadow_top" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_shadow_view_height"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/shadow_top" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_shadow_view_height"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/shadow_bottom" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_shadow_view_height"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/shadow_bottom" />
-
-
-        </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

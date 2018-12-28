@@ -39,8 +39,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.main_viewpager)
     ViewPager mainViewpager;
-    @BindView(R.id.top_bar_ll)
-    LinearLayout topBarLayout;
+    @BindView(R.id.main_rl)
+    RelativeLayout mainRL;
     @BindView(R.id.main_tab_ll_home)
     LinearLayout mainTabLlHome;
     @BindView(R.id.main_tab_ll_lesson)
@@ -59,7 +59,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     TextView mainTabTxLesson;
     @BindView(R.id.main_tab_tx_me)
     TextView mainTabTxMe;
-
+    @BindView(R.id.main_top_shadow)
+    View mainTopShadow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,11 +127,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void initTopBarLayout() {
         RelativeLayout relativeLayout = new RelativeLayout(this);
-        int topBarLayoutHeight = DeviceUtil.getStatusBarHeight() + DeviceUtil.dip2px(this, CommonVarUtil.TOP_TOOL_BAR_HEIGHT);
+        int statusHeight = DeviceUtil.getStatusBarHeight();
+        int topBarLayoutHeight = statusHeight + DeviceUtil.dip2px(this, CommonVarUtil.TOP_TOOL_BAR_HEIGHT);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, topBarLayoutHeight);
         relativeLayout.setLayoutParams(params);
         relativeLayout.setBackgroundResource(R.drawable.top_layout_gradient);
-        topBarLayout.addView(relativeLayout, 0);
+        mainRL.addView(relativeLayout, 0);
+
+        ViewGroup.MarginLayoutParams p1 = (ViewGroup.MarginLayoutParams) mainViewpager.getLayoutParams();
+        p1.setMargins(0, statusHeight, 0, 0);
+        mainViewpager.requestLayout();
+
+        ViewGroup.MarginLayoutParams p2 = (ViewGroup.MarginLayoutParams) mainTopShadow.getLayoutParams();
+        p2.setMargins(0, topBarLayoutHeight, 0, 0);
+        mainTopShadow.requestLayout();
     }
 
     private void initBottomBarLayout() {
