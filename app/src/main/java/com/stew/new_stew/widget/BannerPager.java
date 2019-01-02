@@ -1,8 +1,6 @@
 package com.stew.new_stew.widget;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -20,12 +18,12 @@ import java.util.List;
 public class BannerPager extends ViewPager {
 
     private static final String TAG = BannerPager.class.getSimpleName();
-    private Context context;
+    private Activity context;
     private List<String> imageViewUrlList;
     private boolean isAutoScroll = false;
-    private BannerHandler handler;
+    private static BannerHandler handler;
 
-    public BannerPager(@NonNull Context context) {
+    public BannerPager(@NonNull Activity context) {
         super(context);
         this.context = context;
     }
@@ -42,13 +40,10 @@ public class BannerPager extends ViewPager {
         ViewPagerScroller scroller = new ViewPagerScroller(context);
         scroller.init(this);
         this.addOnPageChangeListener(new BannerPagerChangeListener());
-//        handler = new BannerHandler(context);
+        if (handler == null && context != null) {
+            handler = new BannerHandler(context);
+        }
     }
-
-    public void runBanner() {
-
-    }
-
 
     public class BannerPagerChangeListener implements OnPageChangeListener {
         @Override
@@ -57,6 +52,7 @@ public class BannerPager extends ViewPager {
 
         @Override
         public void onPageSelected(int i) {
+            Log.d(TAG, "onPageSelected: " + i);
         }
 
         @Override
@@ -65,7 +61,7 @@ public class BannerPager extends ViewPager {
     }
 
     public static class BannerHandler extends Handler {
-        private WeakReference<Activity> reference;
+        private final WeakReference<Activity> reference;
 
         public BannerHandler(Activity activity) {
             reference = new WeakReference<>(activity);
@@ -74,8 +70,15 @@ public class BannerPager extends ViewPager {
         @Override
         public void handleMessage(Message msg) {
             if (reference.get() != null) {
-                Log.d(TAG, "handleMessage: " + msg.what);
+                Log.d(TAG, "handleMessage: -------------" + msg.what);
+                runBanner();
             }
+        }
+    }
+
+    public static void runBanner() {
+        if (handler != null) {
+            handler.sendEmptyMessageDelayed(666, 1000);
         }
     }
 
