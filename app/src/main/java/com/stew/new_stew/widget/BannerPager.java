@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
+import com.stew.new_stew.widget.widgetAdapter.BannerPagerAdapter;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class BannerPager extends ViewPager {
     private Activity context;
     private List<String> imageViewUrlList;
     private boolean isAutoScroll = false;
-    private static BannerHandler handler;
+    private BannerHandler handler;
 
     public BannerPager(@NonNull Activity context) {
         super(context);
@@ -40,12 +42,14 @@ public class BannerPager extends ViewPager {
         ViewPagerScroller scroller = new ViewPagerScroller(context);
         scroller.init(this);
         this.addOnPageChangeListener(new BannerPagerChangeListener());
-        if (handler == null && context != null) {
+        this.setAdapter(new BannerPagerAdapter(context, imageViewUrlList));
+        if (handler == null && context != null && imageViewUrlList.size() > 1) {
             handler = new BannerHandler(context);
         }
     }
 
-    public class BannerPagerChangeListener implements OnPageChangeListener {
+    private class BannerPagerChangeListener implements OnPageChangeListener {
+
         @Override
         public void onPageScrolled(int i, float v, int i1) {
         }
@@ -53,6 +57,13 @@ public class BannerPager extends ViewPager {
         @Override
         public void onPageSelected(int i) {
             Log.d(TAG, "onPageSelected: " + i);
+            if (imageViewUrlList.size() > 1) {
+                if (i < 1) {
+                    BannerPager.this.setCurrentItem(imageViewUrlList.size() - 2);
+                } else if (i > imageViewUrlList.size() - 2) {
+                    BannerPager.this.setCurrentItem(1);
+                }
+            }
         }
 
         @Override
@@ -60,7 +71,7 @@ public class BannerPager extends ViewPager {
         }
     }
 
-    public static class BannerHandler extends Handler {
+    private class BannerHandler extends Handler {
         private final WeakReference<Activity> reference;
 
         public BannerHandler(Activity activity) {
@@ -76,15 +87,18 @@ public class BannerPager extends ViewPager {
         }
     }
 
-    public static void runBanner() {
+    private void runBanner() {
         if (handler != null) {
+            this.setCurrentItem(this.getCurrentItem() + 1);
             handler.sendEmptyMessageDelayed(666, 1000);
         }
     }
 
     @Override
     protected void onDetachedFromWindow() {
-        handler.removeCallbacksAndMessages(null);
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
         super.onDetachedFromWindow();
     }
 }

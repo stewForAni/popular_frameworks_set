@@ -7,11 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.stew.new_stew.R;
+import com.stew.new_stew.widget.ShapedImageView;
 
 import java.util.List;
 
@@ -36,15 +36,16 @@ public class BannerPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         Log.d(TAG, "instantiateItem: ---------" + position);
         View view = LayoutInflater.from(context).inflate(R.layout.banner_item, null);
-        ImageView imageView = view.findViewById(R.id.banner_item_image);
+        ShapedImageView imageView = view.findViewById(R.id.banner_item_image);
         String url = imageUrlsList.get(position);
         Glide.with(context).load(url).into(imageView);
+
         imageView.setTag(position);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = (Integer) v.getTag();
-                Toast.makeText(context, "position = " +position, 0).show();
+                Toast.makeText(context, "position = " + position, Toast.LENGTH_SHORT).show();
             }
         });
 
