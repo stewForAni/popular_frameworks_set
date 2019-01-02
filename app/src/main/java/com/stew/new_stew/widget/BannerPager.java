@@ -84,6 +84,7 @@ public class BannerPager extends ViewPager {
 
     @Override
     protected void onDetachedFromWindow() {
+        handler.removeCallbacksAndMessages(null);
         super.onDetachedFromWindow();
     }
 }
