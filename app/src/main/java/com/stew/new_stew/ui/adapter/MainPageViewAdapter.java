@@ -17,16 +17,16 @@ public class MainPageViewAdapter extends FragmentPagerAdapter {
 
     private static final String TAG = MainPageViewAdapter.class.getName();
 
-    private List<Fragment> datas;
+    private List<Fragment> data;
 
-    public MainPageViewAdapter(FragmentManager fm, List<Fragment> datas) {
+    public MainPageViewAdapter(FragmentManager fm, List<Fragment> data) {
         super(fm);
-        this.datas = datas;
+        this.data = data;
     }
 
     @Override
     public Fragment getItem(int i) {
-        return datas.get(i);
+        return data.get(i);
     }
 
     @Override

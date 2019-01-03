@@ -18,6 +18,7 @@
     <!--main activity-->
     <dimen name="main_bottom_tab_height">50dp</dimen>
     <dimen name="main_shadow_view_height">5dp</dimen>
+    <dimen name="fragment_layout_mt">60dp</dimen>
 
     <!--main fragment-->
     <dimen name="main_fragment_search_bar_height">40dp</dimen>
@@ -27,6 +28,7 @@
     <dimen name="main_fragment_edit_mr">10dp</dimen>
     <dimen name="main_fragment_search_ts">14sp</dimen>
     <dimen name="main_fragment_banner_mr">10dp</dimen>
+    <dimen name="main_fragment_banner_height">200dp</dimen>
 
     <!--lesson fragment-->
     <dimen name="lesson_fragment_title_ts">18sp</dimen>

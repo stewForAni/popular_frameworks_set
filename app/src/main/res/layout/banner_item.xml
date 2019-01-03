@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/main_fragment_banner_mr"
         android:scaleType="centerCrop"
-        app:round_radius="30dp"
+        app:round_radius="20dp"
         app:shape_mode="round_rect"
         />
 

@@ -44,8 +44,8 @@ public class BannerPagerAdapter extends PagerAdapter {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = (Integer) v.getTag();
-                Toast.makeText(context, "position = " + position, Toast.LENGTH_SHORT).show();
+                int position1 = (Integer) v.getTag();
+                Toast.makeText(context, "position = " + position1, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -59,9 +59,7 @@ public class BannerPagerAdapter extends PagerAdapter {
     }
 
     /**
-     * @param view
-     * @param o
-     * @return the view is the id , if view == o the view can be reuse. ???
+     * the view is the id , if view == o the view can be reuse. ???
      */
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {

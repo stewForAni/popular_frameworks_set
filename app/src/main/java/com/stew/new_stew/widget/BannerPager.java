@@ -1,15 +1,15 @@
 package com.stew.new_stew.widget;
 
-import android.app.Activity;
-import android.os.Handler;
-import android.os.Message;
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
 import android.util.Log;
 
 import com.stew.new_stew.widget.widgetAdapter.BannerPagerAdapter;
 
-import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,40 +20,45 @@ import java.util.List;
 public class BannerPager extends ViewPager {
 
     private static final String TAG = BannerPager.class.getSimpleName();
-    private Activity context;
+    private Context context;
     private List<String> imageViewUrlList;
-    private boolean isAutoScroll = false;
-    private BannerHandler handler;
 
-    public BannerPager(@NonNull Activity context) {
+    public BannerPager(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public BannerPager(@NonNull Context context, List<String> imageViewUrlList) {
         super(context);
         this.context = context;
-    }
-
-    public void isAutoScroll(boolean isAutoScroll) {
-        this.isAutoScroll = isAutoScroll;
-    }
-
-    public void setImageviewUrlList(List<String> imageViewUrlList) {
         this.imageViewUrlList = imageViewUrlList;
+        dealUrls();
+    }
+
+    private void dealUrls() {
+        int length = imageViewUrlList.size();
+        if (length <= 1) {
+            return;
+        }
+
+        List<String> newList = new ArrayList<>();
+        newList.add(imageViewUrlList.get(length - 1));
+        for (int i = 0; i < length; i++) {
+            newList.add(imageViewUrlList.get(i));
+        }
+        newList.add(imageViewUrlList.get(0));
+        imageViewUrlList = newList;
     }
 
     public void initBanner() {
         ViewPagerScroller scroller = new ViewPagerScroller(context);
         scroller.init(this);
-        this.addOnPageChangeListener(new BannerPagerChangeListener());
-        this.setAdapter(new BannerPagerAdapter(context, imageViewUrlList));
-        if (handler == null && context != null && imageViewUrlList.size() > 1) {
-            handler = new BannerHandler(context);
-        }
+        addOnPageChangeListener(new BannerPagerChangeListener());
+        setAdapter(new BannerPagerAdapter(context, imageViewUrlList));
     }
 
     private class BannerPagerChangeListener implements OnPageChangeListener {
-
         @Override
-        public void onPageScrolled(int i, float v, int i1) {
-        }
-
+        public void onPageScrolled(int i, float v, int i1) {}
         @Override
         public void onPageSelected(int i) {
             Log.d(TAG, "onPageSelected: " + i);
@@ -65,40 +70,12 @@ public class BannerPager extends ViewPager {
                 }
             }
         }
-
         @Override
-        public void onPageScrollStateChanged(int i) {
-        }
-    }
-
-    private class BannerHandler extends Handler {
-        private final WeakReference<Activity> reference;
-
-        public BannerHandler(Activity activity) {
-            reference = new WeakReference<>(activity);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            if (reference.get() != null) {
-                Log.d(TAG, "handleMessage: -------------" + msg.what);
-                runBanner();
-            }
-        }
-    }
-
-    private void runBanner() {
-        if (handler != null) {
-            this.setCurrentItem(this.getCurrentItem() + 1);
-            handler.sendEmptyMessageDelayed(666, 1000);
-        }
+        public void onPageScrollStateChanged(int i) {}
     }
 
     @Override
     protected void onDetachedFromWindow() {
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-        }
         super.onDetachedFromWindow();
     }
 }

@@ -64,12 +64,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         setTheme(R.style.appTheme);
         super.onCreate(savedInstanceState);
         Log.d(TAG, TAG + "onCreate" + DeviceUtil.getStatusBarHeight());
         setStatusBarTransparent();
-
     }
 
     @Override
@@ -82,7 +80,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initMain() {
         Log.d(TAG, "initMain: ");
-
         initTopBarLayout();
         initBottomBarLayout();
 
@@ -90,10 +87,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fragmentList.add(new MainTabFragment());
         fragmentList.add(new LessonTabFragment());
         fragmentList.add(new MeTabFragment());
-
         FragmentPagerAdapter adapter = new MainPageViewAdapter(getSupportFragmentManager(), fragmentList);
-        mainViewpager.setAdapter(adapter);
 
+        mainViewpager.setAdapter(adapter);
         mainViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
