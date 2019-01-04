@@ -27,11 +27,12 @@
     <dimen name="main_fragment_search_bar_mt">10dp</dimen>
     <dimen name="main_fragment_edit_mr">10dp</dimen>
     <dimen name="main_fragment_search_ts">14sp</dimen>
-    <dimen name="main_fragment_banner_mr">10dp</dimen>
+    <dimen name="main_fragment_banner_mr">5dp</dimen>
     <dimen name="main_fragment_banner_height">200dp</dimen>
 
     <!--lesson fragment-->
     <dimen name="lesson_fragment_title_ts">18sp</dimen>
+    <dimen name="main_fragment_banner_image_radius">5dp</dimen>
 
     <!--me fragment-->
 

@@ -145,13 +145,6 @@
             android:textColor="@color/dark_level_2"
             android:textSize="12sp" />
 
-        <com.stew.new_stew.widget.BannerPager
-            android:background="@color/dark_level_1"
-            android:id="@+id/banner_pager"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"/>
-
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

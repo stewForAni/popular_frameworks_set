@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="200dp">
 
     <com.stew.new_stew.widget.ShapedImageView
         android:id="@+id/banner_item_image"
@@ -10,8 +10,7 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/main_fragment_banner_mr"
         android:scaleType="centerCrop"
-        app:round_radius="20dp"
-        app:shape_mode="round_rect"
-        />
+        app:round_radius="@dimen/main_fragment_banner_image_radius"
+        app:shape_mode="round_rect" />
 
 </LinearLayout>
