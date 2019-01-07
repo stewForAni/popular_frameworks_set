@@ -1,4 +1,4 @@
-package com.stew.new_stew.widget;
+package com.stew.new_stew.widget.Banner;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

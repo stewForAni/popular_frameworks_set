@@ -6,7 +6,7 @@ import android.widget.EditText;
 
 import com.stew.new_stew.R;
 import com.stew.new_stew.base.fragment.RootFragment;
-import com.stew.new_stew.widget.BannerPager;
+import com.stew.new_stew.widget.Banner.BannerPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,30 +34,19 @@ public class MainTabFragment extends RootFragment {
     @Override
     public void initView(View rootView) {
         Log.d(TAG, "initView: ");
-        if (getActivity() == null) {
-            return;
-        }
-
         List<String> imageUrlsList = new ArrayList<>();
-        imageUrlsList.add("https://b.zol-img.com.cn/desk/bizhi/image/1/960x600/1546509403790.jpg");
-        imageUrlsList.add("https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/0F/00/ChMkJ1wt5DKIBeJWAAj2O1BxI5QAAuKIwKGDHQACPZT867.jpg");
-        imageUrlsList.add("https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/0F/00/ChMkJ1wt5CqIdyJxAAGQDerQKB4AAuKIwH72fAAAZAl347.jpg");
-        Log.d(TAG, "activity = " + getActivity());
-        bannerPager.initBanner(getActivity(), imageUrlsList);
-        if (imageUrlsList.size() > 1) {
-            runBanner(true);
-        }
-
-    }
-
-    private void runBanner(boolean isAutoScroll) {
-        if (isAutoScroll) {
-            bannerPager.setCurrentItem(bannerPager.getCurrentItem() + 1);
-        }
+        getBannerData(imageUrlsList);
+        bannerPager.initBanner(getActivity(), imageUrlsList, true);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    private void getBannerData(List<String> imageUrlsList) {
+        imageUrlsList.add("https://b.zol-img.com.cn/desk/bizhi/image/1/960x600/1546509403790.jpg");
+        imageUrlsList.add("https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/0F/00/ChMkJ1wt5DKIBeJWAAj2O1BxI5QAAuKIwKGDHQACPZT867.jpg");
+        imageUrlsList.add("https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/0F/00/ChMkJ1wt5CqIdyJxAAGQDerQKB4AAuKIwH72fAAAZAl347.jpg");
     }
 }

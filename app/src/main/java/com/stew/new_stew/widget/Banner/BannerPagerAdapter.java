@@ -1,13 +1,11 @@
-package com.stew.new_stew.widget.widgetAdapter;
+package com.stew.new_stew.widget.Banner;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -22,14 +20,10 @@ import java.util.List;
  * author: stew (https://github.com/stewForAni)
  */
 public class BannerPagerAdapter extends PagerAdapter {
-
-    private static final String TAG = BannerPagerAdapter.class.getSimpleName();
     private Context context;
     private List<String> imageUrlsList;
 
     public BannerPagerAdapter(Context context, List<String> imageUrlsList) {
-        Log.d(TAG, "BannerPagerAdapter: ");
-        Log.d(TAG, "context: " + context);
         this.context = context;
         this.imageUrlsList = imageUrlsList;
     }
@@ -43,12 +37,9 @@ public class BannerPagerAdapter extends PagerAdapter {
         Glide.with(context).load(url).into(imageView);
 
         imageView.setTag(position);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int position1 = (Integer) v.getTag();
-                Toast.makeText(context, "position = " + position1, Toast.LENGTH_SHORT).show();
-            }
+        imageView.setOnClickListener(v -> {
+            int position1 = (Integer) v.getTag();
+            Toast.makeText(context, "position = " + position1, Toast.LENGTH_SHORT).show();
         });
 
         container.addView(view);
@@ -57,7 +48,6 @@ public class BannerPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        Log.d(TAG, "getCount: " + imageUrlsList.size());
         return imageUrlsList.size();
     }
 
@@ -66,13 +56,11 @@ public class BannerPagerAdapter extends PagerAdapter {
      */
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-        Log.d(TAG, "isViewFromObject: ");
         return view == o;
     }
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        Log.d(TAG, "destroyItem: ");
         container.removeView((View) object);
     }
 
