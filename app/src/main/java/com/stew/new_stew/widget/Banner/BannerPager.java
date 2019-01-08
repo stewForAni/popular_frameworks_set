@@ -54,7 +54,7 @@ public class BannerPager extends ViewPager {
 
     private void startAutoPlay() {
         handler.removeCallbacks(runnable);
-        handler.postAtTime(runnable, CommonVarUtil.BANNER_DELAY_TIME);
+        handler.postDelayed(runnable, CommonVarUtil.BANNER_DELAY_TIME);
     }
 
     private void stopAutoPlay() {
@@ -104,6 +104,9 @@ public class BannerPager extends ViewPager {
         @Override
         public void run() {
             if (imageListLength > 1 && isAutoPlay) {
+                currentPosition = currentPosition % (imageListLength - 1) + 1;
+                setCurrentItem(currentPosition, true);
+                handler.postDelayed(runnable, CommonVarUtil.BANNER_DELAY_TIME);
             }
         }
     };
@@ -111,7 +114,12 @@ public class BannerPager extends ViewPager {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (isAutoPlay) {
-
+            int action = ev.getAction();
+            if (action == MotionEvent.ACTION_DOWN) {
+                stopAutoPlay();
+            } else if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_OUTSIDE) {
+                startAutoPlay();
+            }
         }
         return super.dispatchTouchEvent(ev);
     }

@@ -19,6 +19,7 @@
     <color name="dark_level_3">#999999</color>
     <color name="dark_level_3p5">#AAAAAA</color>
     <color name="dark_level_4">#CCCCCC</color>
+    <color name="dark_level_4p5">#DDDDDD</color>
     <color name="dark_level_5">#EEEEEE</color>
 
     <!--white-->
@@ -35,5 +36,9 @@
     <color name="top_layout_start_color">#00C1CC</color>
     <color name="top_layout_center_color">#3D72D8</color>
     <color name="top_layout_end_color">#782AE6</color>
+
+    <!--main-->
+    <color name="shadow_start">#00000000</color>
+    <color name="shadow_end">#44000000</color>
 
 </resources>

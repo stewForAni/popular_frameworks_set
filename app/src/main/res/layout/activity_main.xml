@@ -19,12 +19,12 @@
         <View
             android:id="@+id/main_top_shadow"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/main_shadow_view_height"
+            android:layout_height="@dimen/main_shadow_view_height1"
             android:background="@drawable/shadow_top" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/main_shadow_view_height"
+            android:layout_height="@dimen/main_shadow_view_height2"
             android:layout_alignParentBottom="true"
             android:background="@drawable/shadow_bottom" />
 
