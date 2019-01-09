@@ -53,8 +53,8 @@ public class BannerPager extends ViewPager {
     }
 
     private void startAutoPlay() {
-        handler.removeCallbacks(runnable);
-        handler.postDelayed(runnable, CommonVarUtil.BANNER_DELAY_TIME);
+//        handler.removeCallbacks(runnable);
+//        handler.postDelayed(runnable, CommonVarUtil.BANNER_DELAY_TIME);
     }
 
     private void stopAutoPlay() {
@@ -76,8 +76,8 @@ public class BannerPager extends ViewPager {
         public void onPageScrollStateChanged(int i) {
             Log.d(TAG, "onPageScrollStateChanged: " + i);
             switch (i) {
+                //no operation:0
                 case CommonVarUtil.SCROLL_STATE_IDLE: {
-                    //no operation
                     if (imageListLength > 1) {
                         if (currentPosition == 0) {
                             setCurrentItem(imageListLength - 2, false);
@@ -85,15 +85,14 @@ public class BannerPager extends ViewPager {
                             setCurrentItem(1, false);
                         }
                     }
-
                     break;
                 }
+                //click and drag:1
                 case CommonVarUtil.SCROLL_STATE_DRAGGING: {
-                    //click to drag
                     break;
                 }
+                //finger up:2
                 case CommonVarUtil.SCROLL_STATE_SETTLING: {
-                    //finger up
                     break;
                 }
             }
@@ -105,6 +104,7 @@ public class BannerPager extends ViewPager {
         public void run() {
             if (imageListLength > 1 && isAutoPlay) {
                 currentPosition = currentPosition % (imageListLength - 1) + 1;
+                Log.d(TAG, "auto run: " + currentPosition);
                 setCurrentItem(currentPosition, true);
                 handler.postDelayed(runnable, CommonVarUtil.BANNER_DELAY_TIME);
             }

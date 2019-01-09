@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.stew.new_stew.R;
@@ -38,8 +37,6 @@ public class BannerPagerAdapter extends PagerAdapter {
 
         imageView.setTag(position);
         imageView.setOnClickListener(v -> {
-            int position1 = (Integer) v.getTag();
-            Toast.makeText(context, "position = " + position1, Toast.LENGTH_SHORT).show();
         });
 
         container.addView(view);
